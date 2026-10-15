@@ -1,0 +1,26 @@
+# Local credentials and keys
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+
+# Internal material and local experiment data
+/Private/
+/Internal/
+/Local/
+/.private/
+/logs/
+*.log
+*.pcap
+*.pcapng
+
+# Editor and operating-system metadata
+/.idea/
+/.vscode/
+.DS_Store
+Thumbs.db
+Desktop.ini
+~$*
