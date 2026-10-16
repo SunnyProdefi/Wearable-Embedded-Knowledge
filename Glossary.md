@@ -2,7 +2,7 @@
 
 ## 使用说明
 
-首批 30 个术语，加上 S1-01 新增的 DSP/NPU，共 32 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
+首批 30 个术语，加上 S1-01～S1-03 的关联条目，共 42 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
 关联链接指向已存在的模块导航或课程正文；正式讲解后更新相关入口。
 术语存在不代表用户已学习或掌握。
 
@@ -12,9 +12,9 @@
 | 2 | MCU | Microcontroller Unit | 微控制器 | 通常集成处理器、存储与外设，角色和能力取决于芯片。 | [S1-01](02_Processor_Memory/Processor_Roles.md) |
 | 3 | AP | Application Processor | 应用处理器 | 承担应用和较复杂系统任务的处理器角色，常指整颗主处理芯片。 | [S1-01](02_Processor_Memory/Processor_Roles.md) |
 | 4 | SoC | System on Chip | 片上系统 | 集成多类处理、存储接口和外设模块；与 AP/MCU 不是互斥分类。 | [S1-01](02_Processor_Memory/Processor_Roles.md) |
-| 5 | SRAM | Static Random-Access Memory | 静态随机存储器 | 常用于片上运行存储；静态不代表断电后保留。 | [模块入口](02_Processor_Memory/README.md) |
-| 6 | DRAM / DDR | Dynamic RAM / Double Data Rate | 动态随机存储器 / 双倍数据率 | DDR 常用于 DRAM 技术名称；DRAM 使用中需要刷新。 | [模块入口](02_Processor_Memory/README.md) |
-| 7 | Flash | Flash Memory | 闪存 | 非易失性存储，常用于固件及持久数据；执行方式依平台。 | [模块入口](02_Processor_Memory/README.md) |
+| 5 | SRAM | Static Random-Access Memory | 静态随机存储器 | 普通 SRAM 易失；静态表示不需要 DRAM 式周期刷新，不代表断电保留。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
+| 6 | DRAM / DDR | Dynamic RAM / Double Data Rate | 动态随机存储器 / 双倍数据率 | DRAM 需要供电与刷新；本课 DDR SDRAM 属于 DRAM，DDR 描述传输特性。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
+| 7 | Flash | Flash Memory | 闪存 | 非易失、可电擦写，常存固件和文件；镜像存放位置与执行位置可以不同。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
 | 8 | Cache | Cache Memory | 缓存 | 减少访问较慢存储的开销；与 DMA 共享数据要考虑一致性。 | [模块入口](02_Processor_Memory/README.md) |
 | 9 | MMU | Memory Management Unit | 内存管理单元 | 提供地址转换和访问权限等机制，具体功能依架构。 | [模块入口](02_Processor_Memory/README.md) |
 | 10 | Register | Register | 寄存器 | 本库重点为硬件配置、状态与数据寄存器；访问规则依器件。 | [模块入口](02_Processor_Memory/README.md) |
@@ -40,12 +40,24 @@
 | 30 | AON | Always-On | 常开资源或域 | 在指定低功耗状态保留的资源，不能据此推定支持图像采集。 | [模块入口](01_System_Architecture/README.md) |
 | 31 | DSP | Digital Signal Processor | 数字信号处理器 | 为滤波等信号计算优化的可编程处理器；职责与工具链依平台。 | [S1-01](02_Processor_Memory/Processor_Roles.md) |
 | 32 | NPU | Neural Processing Unit | 神经网络处理单元 | 加速支持的神经网络任务；需要模型适配、运行时和资源管理。 | [S1-01](02_Processor_Memory/Processor_Roles.md) |
+| 33 | ROM | Read-Only Memory | 只读存储器 | 本课为非易失启动存储语境；Mask ROM 出厂固化，具体 ROM 区域实现需查芯片。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
+| 34 | RAM | Random-Access Memory | 随机存取存储器 | 本课主要指 SRAM/DRAM 等运行内存；随机存取不表示随机写入。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
+| 35 | LPDDR | Low-Power Double Data Rate | 低功耗双倍数据率内存 | 低功耗 DRAM 家族；仍要满足供电、刷新与访问条件。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
+| 36 | Buffer | Buffer | 缓冲区 | 内存的一种用途，不是独立存储技术；可位于 DDR 或 SRAM，依容量和可达性。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
+| 37 | XIP | Execute In Place | 就地执行 | 从支持直接取指的存储映射执行代码，需要器件、控制器与系统支持。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
+| 38 | Address Space | Address Space | 地址空间 | 某访问主体在指定上下文中使用的一套地址；相同数值不保证相同对象。 | [S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md) |
+| 39 | Memory Map / Mapping | Memory Map / Memory Mapping | 地址分布图 / 地址映射 | 前者记录区域分配，后者表示地址与资源的对应；建立映射不等于复制内容。 | [S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md) |
+| 40 | VA | Virtual Address | 虚拟地址 | 依赖当前地址转换上下文；不能仅凭数值当作物理地址或跨处理器地址。 | [S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md) |
+| 41 | PA | Physical Address | 物理地址 | CPU 地址转换后所用硬件视图中的地址；仍需说明访问者和平台地址图。 | [S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md) |
+| 42 | Base / Offset | Base Address / Offset | 基址 / 偏移 | 在同一视图及手册规定单位下，用区域基址与偏移定位；不能混用 CPU、总线和器件内部编号。 | [S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md) |
 
 ## 相关公开依据与边界
 
 - DMA 地址、CPU 地址及映射：见 [S02：Linux DMA 指南](Sources.md#s02-linux-dma-地址与映射)。
 - Camera 时钟、电源和软件资源管理的公开实现：见 [S01：Linux Camera Sensor](Sources.md#s01-linux-camera-sensor-驱动)。
 - I3C 动态地址、CCC 与 IBI 概览：见 [S03：Linux I3C](Sources.md#s03-linux-i3c-协议概览)。
+- 存储类型、DDR、ROM/Flash 和执行位置：见 [S1-02 正文及对应来源](02_Processor_Memory/Memory_and_Address_Spaces.md)。
+- 地址空间、映射和器件内部编号：见 [S1-03 正文及对应来源](02_Processor_Memory/Address_Spaces_and_Mapping.md)。
 - AON、电源域、电源引脚名称及复位语义要查目标平台/器件资料；本库尚未指定芯片，未核对任何具体电压或时序。
 - PMIC/PMU、AP/MCU 等是功能与集成边界相关概念，不凭缩写推定实际芯片拓扑。
 

@@ -3,7 +3,7 @@
 ## 记录规则
 
 本文件记录已用于规划、课程和概念边界核对的公开资料。
-查阅日期均为 2026-10-14。未引用公司内部资料，也未指定具体产品和芯片。
+S01～S11 首次查阅于 2026-10-14，后续资料按条目记录日期。未引用公司内部资料，也未指定目标产品和芯片。
 页面链接可变化；进入详细课程时复核版本、接口与适用条件。
 索引不替代正文引用；具体主张在对应文档附近放链接。
 规范介绍页不等于已取得和逐条核对规范全文。
@@ -23,6 +23,7 @@
 - 版本：Linux v6.8 文档。
 - 支持范围：CPU 虚拟地址、CPU 物理地址、DMA 地址及映射的区别。
 - 限制：不能推定具体平台 IOMMU、一致性或 DMA 能力；具体代码结合目标内核和硬件。
+- S1-03 于 2026-10-16 复核地址分类，仅引用概念，不将示例地址用于实际平台。
 
 ## S03 Linux I3C 协议概览
 
@@ -97,6 +98,70 @@
 - 版本：2026-10-14 查阅的家族介绍，未绑定具体料号。
 - 支持范围：MCU 含 Cortex-M 内核、存储与外设，家族中存在不同单/双核及存储配置。
 - 限制：不将某成员配置推广为所有 MCU；不推定 MCU 必须全片上存储或必须独立封装。
+
+## S12 Micron 运行内存与持久存储
+
+- 类型：存储厂商官方说明；查阅日期：2026-10-16。
+- 来源：[Mobile Memory and Storage](https://www.micron.com/markets-industries/mobile)。
+- 版本：查阅时在线页，未绑定特定产品版本。
+- 支持范围：移动 DRAM/LPDDR 是运行内存，Flash 保存文件及镜像；易失与非易失的区别。
+- 限制：不把手机产品配置作为眼镜器件参数，不引用该页面的最新性能宣传。
+
+## S13 Infineon 普通 SRAM
+
+- 类型：存储厂商官方介绍；查阅日期：2026-10-16。
+- 来源：[SRAMs](https://www.infineon.com/products/memories/sram-static-ram)。
+- 版本：查阅时在线产品类别页。
+- 支持范围：普通 SRAM 易失、无需 DRAM 式周期刷新，可用于运行数据与缓冲。
+- 限制：不引用营销性能数值；带备份供电或特殊非易失方案另查资料，不推广为普通 SRAM 断电保留。
+
+## S14 Micron 刷新与自刷新条件
+
+- 类型：存储厂商官方 FAQ；查阅日期：2026-10-16。
+- 来源：[Micron FAQs](https://www.micron.com/sales-support/sales/faqs)，DRAM refresh 与 DDR self-refresh 相关问答。
+- 版本：在线 FAQ，包含不同历史代际的问答，未作为目标器件规范。
+- 支持范围：DRAM 内容维持与刷新、自刷新仍依赖保持供电等条件。
+- 限制：页面具体电压、引脚和时序不能套到任意 DDR/LPDDR；目标设计必须查数据手册。本课不引用其数值。
+
+## S15 Micron DDR 传输与 DRAM 关系
+
+- 类型：存储厂商官方 FAQ；查阅日期：2026-10-16。
+- 来源：[DDR5 DRAM](https://www.micron.com/products/memory/dram-components/ddr5-sdram)。
+- 版本：查阅时在线页；只使用基础定义，不绑定本项目内存代际。
+- 支持范围：DDR5 系统内存属于 DRAM；DDR 表示相关时钟双沿的数据传输，而非容量翻倍。
+- 限制：不推定目标 SoC 支持 DDR5，也不声称应用性能翻倍；LPDDR 另结合 S12。
+
+## S16 ST 加载执行与 XIP
+
+- 类型：芯片厂商官方 Wiki；查阅日期：2026-10-16。
+- 来源：[Introduction to External Memory Manager](https://wiki.st.com/stm32mcu/wiki/Introduction_to_External_memory_Manager)。
+- 版本：查阅时在线页，页面显示修订标识 oldid=80957；引用可访问的正文入口，不提供具体 API 使用代码。
+- 支持范围：XIP 与加载到 RAM 后执行两类流程，以及存储初始化/映射条件的公开实现例子。
+- 限制：不是所有 MCU/Flash 的通用功能；没有匹配目标器件、控制器与布局时不能假定支持 XIP。
+
+## S17 NXP Mask ROM 与 Flash 对照
+
+- 类型：厂商应用笔记；查阅日期：2026-10-16。
+- 来源：[AN2200](https://www.nxp.com/docs/en/application-note/AN2200.pdf)，第 2.1 节 ROM versus FLASH。
+- 版本：文档编号 AN2200，涉及 HC08 系列历史器件；本课不绑定这些器件。
+- 支持范围：厂商对出厂 Mask ROM 与可电擦写非易失 Flash 的明确对照。
+- 限制：不能将这些器件地址、容量、启动流程推广到当前平台；“BootROM”区域的物理实现仍须单独确认。
+
+## S18 Linux MMIO 设备访问
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-16。
+- 来源：[Bus-Independent Device Accesses](https://www.kernel.org/doc/html/v6.8/driver-api/device-io.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：内存映射设备的资源映射与访问接口，MMIO 与普通内存语义的区别。
+- 限制：不是具体控制器寄存器手册；S1-03 只介绍定位与映射，实际调用和访问顺序后续结合平台。
+
+## S19 Linux I2C 目标地址与寄存器参数
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-16。
+- 来源：[Implementing I2C device drivers in userspace](https://www.kernel.org/doc/html/v6.8/i2c/dev-interface.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：总线实例、目标设备地址、设备寄存器/命令及事务接口的区分。
+- 限制：示例的 SMBus 格式不适用于任意 Sensor；I3C 地址管理另查其规范及实现。本课不照抄示例地址作为器件参数。
 
 ## 后续需要的器件资料
 

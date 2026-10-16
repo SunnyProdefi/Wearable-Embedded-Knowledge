@@ -206,7 +206,7 @@ DMA 减少 CPU 逐项搬运，不免除 CPU 的配置、所有权和同步工作
 
 ## 关联课程与来源
 
-- 下一课：[S1-02 规划与依赖](../Roadmap.md#第一阶段底层计算与存储)。
+- 下一课：[S1-02：存储类型与代码、数据放置](Memory_and_Address_Spaces.md)。
 - [处理器与存储导航](README.md)、[系统架构](../01_System_Architecture/README.md)、[Camera](../05_Camera/README.md)、[术语速查](../Glossary.md)。
 - 本课来源：Sources 中 S07～S11；旧有 DMA 参考为 S02。正文均在对应主张附近给出直接链接。
 - [来源及版本范围](../Sources.md)；以上介绍页均查阅于 2026-10-14，不能替代实际芯片手册或固定版本实现。

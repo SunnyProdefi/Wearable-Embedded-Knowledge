@@ -7,8 +7,8 @@
 ## 当前状态
 
 - 2026-10-14：用户确认初始化方案，完成基础目录与导航。
-- [S1-01：处理器角色](02_Processor_Memory/Processor_Roles.md) 已建立，其余详细课程与独立工程案例随学习逐步补齐。
-- S1-01 待检查，其余课程待学习；工作经验和阅读不等同于已掌握。
+- [S1-01：处理器角色](02_Processor_Memory/Processor_Roles.md)、[S1-02：存储类型](02_Processor_Memory/Memory_and_Address_Spaces.md)、[S1-03：地址空间](02_Processor_Memory/Address_Spaces_and_Mapping.md) 已建立，其余详细课程与独立工程案例随学习逐步补齐。
+- 2026-10-16：用户确认 S1-01、S1-02 已掌握；S1-03 待检查，其余课程待学习。文档存在和阅读不等同于已掌握。
 - 2026-10-15：按用户要求将现有知识库通过 GitHub 公开维护；本地 Markdown 仍是编辑入口。
 - 公开仓库：[SunnyProdefi/Wearable-Embedded-Knowledge](https://github.com/SunnyProdefi/Wearable-Embedded-Knowledge)。
 
@@ -62,7 +62,7 @@ RF、PCB 和模拟电路以软件与集成约束为边界。
 |---|---|
 | [Roadmap.md](Roadmap.md) | 五阶段课程、稳定 ID、前置依赖和验收 |
 | [Progress.md](Progress.md) | 学习状态、检查证据、疑问与复习 |
-| [Glossary.md](Glossary.md) | 30 个首批术语及 S1-01 新增 DSP/NPU，含关联入口 |
+| [Glossary.md](Glossary.md) | 首批术语与课程新增概念，共 42 个条目，含关联入口 |
 | [Sources.md](Sources.md) | 公开来源、版本、查阅日期与适用边界 |
 | [ChangeLog.md](ChangeLog.md) | 结构和知识的重要修订 |
 | [课程模板](Templates/Lesson.md) | 正式知识点的编写骨架 |
