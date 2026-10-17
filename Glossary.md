@@ -2,7 +2,7 @@
 
 ## 使用说明
 
-首批 30 个术语，加上 S1-01～S1-03 的关联条目，共 42 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
+首批 30 个术语，加上 S1-01～S1-04 的关联条目，共 47 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
 关联链接指向已存在的模块导航或课程正文；正式讲解后更新相关入口。
 术语存在不代表用户已学习或掌握。
 
@@ -17,8 +17,8 @@
 | 7 | Flash | Flash Memory | 闪存 | 非易失、可电擦写，常存固件和文件；镜像存放位置与执行位置可以不同。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
 | 8 | Cache | Cache Memory | 缓存 | 减少访问较慢存储的开销；与 DMA 共享数据要考虑一致性。 | [模块入口](02_Processor_Memory/README.md) |
 | 9 | MMU | Memory Management Unit | 内存管理单元 | 提供地址转换和访问权限等机制，具体功能依架构。 | [模块入口](02_Processor_Memory/README.md) |
-| 10 | Register | Register | 寄存器 | 本库重点为硬件配置、状态与数据寄存器；访问规则依器件。 | [模块入口](02_Processor_Memory/README.md) |
-| 11 | MMIO | Memory-Mapped I/O | 内存映射 I/O | 通过地址空间中的映射访问硬件；不同于普通 RAM 访问语义。 | [模块入口](02_Processor_Memory/README.md) |
+| 10 | Register | Register | 寄存器 | 外设暴露的配置、状态或数据访问接口；读写可能有副作用，本课不同于 CPU 通用寄存器。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
+| 11 | MMIO | Memory-Mapped I/O | 内存映射 I/O | 把 CPU 地址空间的一部分用于设备访问；映射、宽度、接口和寄存器语义需匹配。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
 | 12 | DMA | Direct Memory Access | 直接内存访问 | 硬件搬运数据，减少 CPU 逐项搬运；仍需配置、同步及完成处理。 | [模块入口](02_Processor_Memory/README.md) |
 | 13 | IRQ | Interrupt Request | 中断请求 | 通知处理器发生事件；实际触发、屏蔽和处理链依平台。 | [模块入口](02_Processor_Memory/README.md) |
 | 14 | PMIC | Power Management Integrated Circuit | 电源管理芯片 | 管理电源相关功能的集成电路，不能仅凭名称推定功能范围。 | [模块入口](03_Power_Clock/README.md) |
@@ -50,6 +50,11 @@
 | 40 | VA | Virtual Address | 虚拟地址 | 依赖当前地址转换上下文；不能仅凭数值当作物理地址或跨处理器地址。 | [S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md) |
 | 41 | PA | Physical Address | 物理地址 | CPU 地址转换后所用硬件视图中的地址；仍需说明访问者和平台地址图。 | [S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md) |
 | 42 | Base / Offset | Base Address / Offset | 基址 / 偏移 | 在同一视图及手册规定单位下，用区域基址与偏移定位；不能混用 CPU、总线和器件内部编号。 | [S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md) |
+| 43 | Bit Field / Mask | Bit Field / Bit Mask | 位域 / 位掩码 | 用一个或多个位表达功能，掩码选择目标位；不改变寄存器本身的访问语义。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
+| 44 | RO / RW / WO | Read-Only / Read-Write / Write-Only | 只读 / 读写 / 只写 | 描述访问类别，仍需核对各位副作用、生效和保留位规则。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
+| 45 | W1C | Write One to Clear | 写 1 清零 | 对目标位写 1 触发清除，写 0 不清；不能照搬普通 RW 读改写。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
+| 46 | Read-to-clear | Read-to-clear | 读后清除 | 读取会清除指定状态，调试和日志也可能改变事件可见性。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
+| 47 | RMW | Read-Modify-Write | 读改写 | 读取、修改目标字段、写回；仅在语义允许且并发等条件妥当时使用，不是通用原子操作。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
 
 ## 相关公开依据与边界
 
@@ -58,6 +63,7 @@
 - I3C 动态地址、CCC 与 IBI 概览：见 [S03：Linux I3C](Sources.md#s03-linux-i3c-协议概览)。
 - 存储类型、DDR、ROM/Flash 和执行位置：见 [S1-02 正文及对应来源](02_Processor_Memory/Memory_and_Address_Spaces.md)。
 - 地址空间、映射和器件内部编号：见 [S1-03 正文及对应来源](02_Processor_Memory/Address_Spaces_and_Mapping.md)。
+- 寄存器位域、读写副作用与 MMIO 完成语义：见 [S1-04 正文及对应来源](02_Processor_Memory/Registers_and_MMIO.md)。
 - AON、电源域、电源引脚名称及复位语义要查目标平台/器件资料；本库尚未指定芯片，未核对任何具体电压或时序。
 - PMIC/PMU、AP/MCU 等是功能与集成边界相关概念，不凭缩写推定实际芯片拓扑。
 

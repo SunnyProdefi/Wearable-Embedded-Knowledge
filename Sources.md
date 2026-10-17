@@ -154,6 +154,7 @@ S01～S11 首次查阅于 2026-10-14，后续资料按条目记录日期。未�
 - 版本：Linux v6.8 文档。
 - 支持范围：内存映射设备的资源映射与访问接口，MMIO 与普通内存语义的区别。
 - 限制：不是具体控制器寄存器手册；S1-03 只介绍定位与映射，实际调用和访问顺序后续结合平台。
+- S1-04 于 2026-10-17 复核 MMIO、I/O 访问接口与 posted write；只引用定义和边界，不将任意读回当作通用完成机制。
 
 ## S19 Linux I2C 目标地址与寄存器参数
 
@@ -162,6 +163,30 @@ S01～S11 首次查阅于 2026-10-14，后续资料按条目记录日期。未�
 - 版本：Linux v6.8 文档。
 - 支持范围：总线实例、目标设备地址、设备寄存器/命令及事务接口的区分。
 - 限制：示例的 SMBus 格式不适用于任意 Sensor；I3C 地址管理另查其规范及实现。本课不照抄示例地址作为器件参数。
+
+## S20 Open-CMSIS-SVD 寄存器访问语义
+
+- 类型：公开寄存器描述规范文档；查阅日期：2026-10-17。
+- 来源：[registers element](https://open-cmsis-pack.github.io/svd-spec/latest/elem_registers.html)。
+- 版本：latest 在线规范描述页，未指定目标芯片 SVD 或硬件版本。
+- 支持范围：寄存器/位域、访问类别、oneToClear 和 readAction 等元数据表达的机制。
+- 限制：不能据此断定某个实际寄存器采用 W1C 或读清除，也不迁移页面示例地址和位定义；必须核对目标手册。
+
+## S21 Linux volatile 的使用边界
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-17。
+- 来源：[Why the volatile type class should not be used](https://www.kernel.org/doc/html/v6.8/process/volatile-considered-harmful.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：Linux 中 volatile 不能代替同步与正确访问机制，驱动应使用适当 I/O 接口。
+- 限制：不是对所有裸机 SDK 的禁令，也不保证任意语言编译器的设备访问行为；具体平台依其规则。
+
+## S22 Linux 内存屏障与 I/O 顺序
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-17。
+- 来源：[Linux kernel memory barriers](https://www.kernel.org/doc/html/v6.8/core-api/wrappers/memory-barriers.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：内存/I/O 访问顺序、可见性及访问接口保证需要按其定义理解。
+- 限制：不将访问有序等同于外设工作完成；S1-04 不提供通用屏障配方或特定控制器等待代码。
 
 ## 后续需要的器件资料
 

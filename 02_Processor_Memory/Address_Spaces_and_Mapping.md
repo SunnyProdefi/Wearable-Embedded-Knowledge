@@ -201,7 +201,7 @@ AP 虚拟地址不自动成为 MCU 的有效地址；地址值、映射和资源
 ## 关联课程与依据
 
 - 前一课：[S1-02](Memory_and_Address_Spaces.md)。
-- 下一课 S1-04：寄存器与 MMIO 的具体控制语义，见 [路线](../Roadmap.md#第一阶段底层计算与存储)。
+- 下一课：[S1-04：寄存器与 MMIO 的具体控制语义](Registers_and_MMIO.md)。
 - [硬件接口](../04_Hardware_Interfaces/README.md)、[Camera](../05_Camera/README.md)、[术语速查](../Glossary.md)。
 - 来源：S02（本课于 2026-10-16 复核）、S18、S19，版本范围见 [Sources.md](../Sources.md)。
 - 本文不包含真实 SoC/Sensor 寄存器地址或公司私有实现。
