@@ -2,7 +2,7 @@
 
 ## 使用说明
 
-首批 30 个术语，加上 S1-01～S1-04 的关联条目，共 47 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
+首批 30 个术语，加上 S1-01～S1-06 的关联条目，共 59 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
 关联链接指向已存在的模块导航或课程正文；正式讲解后更新相关入口。
 术语存在不代表用户已学习或掌握。
 
@@ -20,7 +20,7 @@
 | 10 | Register | Register | 寄存器 | 外设暴露的配置、状态或数据访问接口；读写可能有副作用，本课不同于 CPU 通用寄存器。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
 | 11 | MMIO | Memory-Mapped I/O | 内存映射 I/O | 把 CPU 地址空间的一部分用于设备访问；映射、宽度、接口和寄存器语义需匹配。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
 | 12 | DMA | Direct Memory Access | 直接内存访问 | 硬件搬运数据，减少 CPU 逐项搬运；仍需配置、同步及完成处理。 | [模块入口](02_Processor_Memory/README.md) |
-| 13 | IRQ | Interrupt Request | 中断请求 | 通知处理器发生事件；实际触发、屏蔽和处理链依平台。 | [模块入口](02_Processor_Memory/README.md) |
+| 13 | IRQ | Interrupt Request | 中断请求 | 通知处理器发生事件；实际触发、屏蔽和处理链依平台，不代表上层回调已执行。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
 | 14 | PMIC | Power Management Integrated Circuit | 电源管理芯片 | 管理电源相关功能的集成电路，不能仅凭名称推定功能范围。 | [模块入口](03_Power_Clock/README.md) |
 | 15 | PMU | Power Management Unit | 电源管理单元 | 电源管理功能单元，可能位于 SoC 等器件内部，边界依平台。 | [模块入口](03_Power_Clock/README.md) |
 | 16 | LDO | Low-Dropout Regulator | 低压差线性稳压器 | 线性稳压；软件需关注使能、负载、电压和可用条件。 | [模块入口](03_Power_Clock/README.md) |
@@ -55,6 +55,18 @@
 | 45 | W1C | Write One to Clear | 写 1 清零 | 对目标位写 1 触发清除，写 0 不清；不能照搬普通 RW 读改写。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
 | 46 | Read-to-clear | Read-to-clear | 读后清除 | 读取会清除指定状态，调试和日志也可能改变事件可见性。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
 | 47 | RMW | Read-Modify-Write | 读改写 | 读取、修改目标字段、写回；仅在语义允许且并发等条件妥当时使用，不是通用原子操作。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
+| 48 | Controller | Controller | 控制器 | 执行特定接口操作的硬件模块；其寄存器接口与外部协议接口各有规则。 | [S1-05](02_Processor_Memory/Controllers_and_Buses.md) |
+| 49 | Interconnect | On-chip Interconnect | 片上互联 | 连接芯片内部功能模块并传递访问请求与响应，具体拓扑依平台。 | [S1-05](02_Processor_Memory/Controllers_and_Buses.md) |
+| 50 | AMBA | Advanced Microcontroller Bus Architecture | Arm 片上互联协议体系 | 包含 AXI/AHB/APB 等，不能凭名称推定具体 SoC 的连接与版本。 | [S1-05](02_Processor_Memory/Controllers_and_Buses.md) |
+| 51 | Adapter / Client | I2C Adapter / I2C Client | I2C 适配器 / 客户设备 | Linux I2C 的软件对象及分层术语；逻辑 adapter 不一定一一对应物理控制器。 | [S1-05](02_Processor_Memory/Controllers_and_Buses.md) |
+| 52 | ACK / NACK | Acknowledge / Not Acknowledge | 应答 / 非应答 | I2C 中需结合阶段和发送方解释；应答不证明器件身份或图像完成，读末尾 NACK 可为正常结束。 | [S1-05](02_Processor_Memory/Controllers_and_Buses.md) |
+| 53 | Transaction | Bus Transaction | 总线事务 | 按接口协议组织的一次通信过程；器件寄存器读取可由多个消息组合完成。 | [S1-05](02_Processor_Memory/Controllers_and_Buses.md) |
+| 54 | Polling | Polling | 轮询 | 软件再次检查状态，可忙等或间隔查询；需核对读取副作用、事件保持与超时。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
+| 55 | ISR | Interrupt Service Routine | 中断服务例程 | 识别并处理事件的程序；允许执行的操作取决于处理上下文。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
+| 56 | Interrupt Controller | Interrupt Controller | 中断控制器 | 管理中断的屏蔽、路由与分派等，具体能力依平台；不同于执行 I2C 事务的控制器。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
+| 57 | Execution Context | Execution Context | 执行/处理上下文 | 决定代码能否睡眠、阻塞及使用哪些接口；硬中断与线程上下文分别核对。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
+| 58 | Mask / Unmask | Interrupt Mask / Unmask | 中断屏蔽 / 解除屏蔽 | 控制指定层级的中断通知，不自动等于清状态或停止硬件任务。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
+| 59 | Edge / Level | Edge-triggered / Level-triggered | 边沿 / 电平触发 | 分别关注规定方向的变化或有效电平；锁存、重送与清源规则依平台。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
 
 ## 相关公开依据与边界
 
@@ -64,12 +76,14 @@
 - 存储类型、DDR、ROM/Flash 和执行位置：见 [S1-02 正文及对应来源](02_Processor_Memory/Memory_and_Address_Spaces.md)。
 - 地址空间、映射和器件内部编号：见 [S1-03 正文及对应来源](02_Processor_Memory/Address_Spaces_and_Mapping.md)。
 - 寄存器位域、读写副作用与 MMIO 完成语义：见 [S1-04 正文及对应来源](02_Processor_Memory/Registers_and_MMIO.md)。
+- 控制器分工、片上互联、I2C 请求与返回契约：见 [S1-05 正文及对应来源](02_Processor_Memory/Controllers_and_Buses.md)。
+- 中断、轮询、处理上下文与等待通知：见 [S1-06 正文及对应来源](02_Processor_Memory/Interrupts_and_Polling.md)。
 - AON、电源域、电源引脚名称及复位语义要查目标平台/器件资料；本库尚未指定芯片，未核对任何具体电压或时序。
 - PMIC/PMU、AP/MCU 等是功能与集成边界相关概念，不凭缩写推定实际芯片拓扑。
 
 ## 下一批术语
 
-规划：ISP、CSI-2、D-PHY、PDM、I2S、Codec、HCI、DAA、CCC、ENTDAA、SETDASA、IBI、ACK/NACK、BootROM、IOMMU、Runtime PM。
+规划：ISP、CSI-2、D-PHY、PDM、I2S、Codec、HCI、DAA、CCC、ENTDAA、SETDASA、IBI、BootROM、IOMMU、Runtime PM。
 这些尚未作为正式速查条目建立；随课程或会议问题查证后补入。
 
 ## 速查回答约定

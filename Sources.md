@@ -188,6 +188,70 @@ S01～S11 首次查阅于 2026-10-14，后续资料按条目记录日期。未�
 - 支持范围：内存/I/O 访问顺序、可见性及访问接口保证需要按其定义理解。
 - 限制：不将访问有序等同于外设工作完成；S1-04 不提供通用屏障配方或特定控制器等待代码。
 
+## S23 Linux I2C 软件分层与设备驱动
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-19。
+- 来源：[Introduction to I2C and SMBus](https://www.kernel.org/doc/html/v6.8/i2c/summary.html)、[Implementing I2C device drivers](https://www.kernel.org/doc/html/v6.8/i2c/writing-clients.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：adapter/client、控制器驱动与设备驱动的分层，以及设备访问参数的组织。
+- 限制：文档保留 master/slave 等旧术语；不引用其历史速度概括作为完整 I2C 规范，不照抄示例 SMBus 命令用于任意 Sensor。
+
+## S24 Linux I2C 事务概览
+
+- 类型：公开实现的官方协议说明；查阅日期：2026-10-19。
+- 来源：[The I2C Protocol](https://www.kernel.org/doc/html/v6.8/i2c/i2c-protocol.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：读写消息、组合事务、起始/停止与 ACK/NACK 在事务中的位置。
+- 限制：不是完整电气规范或 Sensor 访问手册；“发送内部编号再读取”是本课器件访问假设，宽度、字节序及 STOP/重复起始要求必须核对实际器件。
+
+## S25 Linux I2C API 返回契约
+
+- 类型：公开实现的官方 API 文档；查阅日期：2026-10-19。
+- 来源：[I2C and SMBus Subsystem](https://www.kernel.org/doc/html/v6.8/driver-api/i2c.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：`i2c_transfer()` 返回已执行消息数或负错误码，与按字节数返回的接口区分。
+- 限制：不将该同步接口语义推广到厂商异步接口；传输完整完成也需另外核对器件数据含义。
+
+## S26 Arm AMBA 连接用途
+
+- 类型：协议制定方官方介绍页；查阅日期：2026-10-19。
+- 来源：[AMBA](https://www.arm.com/architecture/system-architectures/amba)。
+- 版本：查阅时在线介绍，未绑定具体 AMBA 子协议版本。
+- 支持范围：AMBA 连接 SoC 功能模块，AXI/AHB/APB 的基本定位。
+- 限制：本次未逐条核对规范全文，不推定目标芯片必用这些协议、桥接结构或拓扑；不把片上用途解释为所有 AMBA 扩展只能片内使用。
+
+## S27 Linux 通用与线程化 IRQ
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-19。
+- 来源：[Linux generic IRQ handling](https://www.kernel.org/doc/html/v6.8/core-api/genericirq.html)。
+- 版本：Linux v6.8 文档；引用通用分层、IRQ 流程及线程化接口说明，不将历史背景描述当作当前实现状态。
+- 支持范围：IRQ 层级、屏蔽/确认/EOI、边沿/电平流程，以及主处理与线程处理的区分。
+- 限制：不提供目标芯片 IRQ 编号、路由或状态定义，不假定设备清源与中断控制器确认是同一操作；特殊内核配置按目标实现核对。
+
+## S28 Linux 忙等与睡眠延时
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-19。
+- 来源：[delays - Information on the various kernel delay / sleep mechanisms](https://www.kernel.org/doc/html/v6.8/timers/timers-howto.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：忙等/睡眠及原子上下文对接口选择的限制。
+- 限制：本课不引用页面时间阈值作为通用选型参数；等待时长与 API 需结合目标任务和上下文，固定延时不替代完成判断。
+
+## S29 Linux 工作队列
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-19。
+- 来源：[Workqueue](https://www.kernel.org/doc/html/v6.8/core-api/workqueue.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：普通工作线程执行排队任务的模型，以及排队与执行完成的区别。
+- 限制：不将所有延后执行机制都视为可睡眠；仍需核对具体队列、上下文、所持锁及目标版本。
+
+## S30 Linux Completion 等待与通知
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-19。
+- 来源：[Completions - wait for completion barrier APIs](https://www.kernel.org/doc/html/v6.8/scheduler/completion.html)。
+- 版本：Linux v6.8 文档。
+- 支持范围：先初始化、通知可先于等待、阻塞等待的上下文限制，以及超时/复用/对象生命周期问题。
+- 限制：completion 不自动关联硬件请求编号或确认数据有效；本课不提供适用于所有设备的初始化/启动/重置配方。
+
 ## 后续需要的器件资料
 
 当前无具体芯片，以下都待用户任务提供或公开查证：

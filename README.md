@@ -7,8 +7,8 @@
 ## 当前状态
 
 - 2026-10-14：用户确认初始化方案，完成基础目录与导航。
-- 第一阶段 [S1-01](02_Processor_Memory/Processor_Roles.md)、[S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md)、[S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md)、[S1-04](02_Processor_Memory/Registers_and_MMIO.md) 已建立，其余详细课程与独立工程案例随学习逐步补齐。
-- 2026-10-17：用户确认 S1-01～S1-03 已掌握；S1-04 待检查，其余课程待学习。文档存在和阅读不等同于已掌握。
+- 第一阶段 [S1-01](02_Processor_Memory/Processor_Roles.md)、[S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md)、[S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md)、[S1-04](02_Processor_Memory/Registers_and_MMIO.md)、[S1-05](02_Processor_Memory/Controllers_and_Buses.md)、[S1-06](02_Processor_Memory/Interrupts_and_Polling.md) 已建立，其余详细课程与独立工程案例随学习逐步补齐。
+- 实际学习状态见 [Progress.md](Progress.md)，文档存在和阅读不等同于已掌握。
 - 2026-10-15：按用户要求将现有知识库通过 GitHub 公开维护；本地 Markdown 仍是编辑入口。
 - 公开仓库：[SunnyProdefi/Wearable-Embedded-Knowledge](https://github.com/SunnyProdefi/Wearable-Embedded-Knowledge)。
 
@@ -62,7 +62,7 @@ RF、PCB 和模拟电路以软件与集成约束为边界。
 |---|---|
 | [Roadmap.md](Roadmap.md) | 五阶段课程、稳定 ID、前置依赖和验收 |
 | [Progress.md](Progress.md) | 学习状态、检查证据、疑问与复习 |
-| [Glossary.md](Glossary.md) | 首批术语与课程新增概念，共 47 个条目，含关联入口 |
+| [Glossary.md](Glossary.md) | 首批术语与课程新增概念，共 59 个条目，含关联入口 |
 | [Sources.md](Sources.md) | 公开来源、版本、查阅日期与适用边界 |
 | [ChangeLog.md](ChangeLog.md) | 结构和知识的重要修订 |
 | [课程模板](Templates/Lesson.md) | 正式知识点的编写骨架 |
@@ -79,6 +79,7 @@ RF、PCB 和模拟电路以软件与集成约束为边界。
 
 ## 维护边界
 
+2026-10-19 起，按用户授权，每次课程与学习进展更新完成后检查相关改动，并自动提交、推送到上述公开 GitHub 仓库；具体授权范围见 [AGENTS.md](AGENTS.md)。
 内部资料留在用户授权范围，不擅自发往外部服务。
 通用原理、平台实现、典型方案与假设分开标注。
 规划中的文件名仅作主题说明；正文建立后才添加对应链接。

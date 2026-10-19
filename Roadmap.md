@@ -4,7 +4,7 @@
 
 对象：具备 Camera 软件开发经验、希望补齐硬件与系统协同能力的工程师。
 目录分类不等于课程顺序；每课使用稳定 ID，允许按前置依赖交叉学习。
-课程按学习逐步建立；[S1-01](02_Processor_Memory/Processor_Roles.md)、[S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md)、[S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md)、[S1-04](02_Processor_Memory/Registers_and_MMIO.md) 正文已建立，其余正文待创建。实际进度见 [Progress.md](Progress.md)。
+课程按学习逐步建立；[S1-01](02_Processor_Memory/Processor_Roles.md)、[S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md)、[S1-03](02_Processor_Memory/Address_Spaces_and_Mapping.md)、[S1-04](02_Processor_Memory/Registers_and_MMIO.md)、[S1-05](02_Processor_Memory/Controllers_and_Buses.md)、[S1-06](02_Processor_Memory/Interrupts_and_Polling.md) 正文已建立，其余正文待创建。实际进度见 [Progress.md](Progress.md)。
 
 ## 开课前导览与评估
 
