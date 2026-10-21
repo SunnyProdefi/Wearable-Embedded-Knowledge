@@ -177,5 +177,5 @@ R：ISR 识别本次完成
 ## 关联课程与来源
 
 - [前一课 S1-05](Controllers_and_Buses.md)、[寄存器语义 S1-04](Registers_and_MMIO.md)、[课程路线](../Roadmap.md)。
-- 下一课 S1-07：DMA、Cache、MMU/IOMMU 入门，连接接收端写内存、CPU 接管与 Buffer 可用条件。
+- [下一课 S1-07](Cache_MMU_and_DMA_Mapping.md)：DMA、Cache、MMU/IOMMU 入门，连接接收端写内存、CPU 接管与 Buffer 可用条件。
 - S27～S30 为本课新增公开依据，版本和限制见 [Sources.md](../Sources.md)；不据这些通用文档推定某芯片状态/中断寄存器的含义。

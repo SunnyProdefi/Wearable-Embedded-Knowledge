@@ -2,7 +2,7 @@
 
 ## 使用说明
 
-首批 30 个术语，加上 S1-01～S1-06 的关联条目，共 59 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
+首批 30 个术语，加上 S1-01～S1-07 的关联条目，共 65 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
 关联链接指向已存在的模块导航或课程正文；正式讲解后更新相关入口。
 术语存在不代表用户已学习或掌握。
 
@@ -15,11 +15,11 @@
 | 5 | SRAM | Static Random-Access Memory | 静态随机存储器 | 普通 SRAM 易失；静态表示不需要 DRAM 式周期刷新，不代表断电保留。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
 | 6 | DRAM / DDR | Dynamic RAM / Double Data Rate | 动态随机存储器 / 双倍数据率 | DRAM 需要供电与刷新；本课 DDR SDRAM 属于 DRAM，DDR 描述传输特性。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
 | 7 | Flash | Flash Memory | 闪存 | 非易失、可电擦写，常存固件和文件；镜像存放位置与执行位置可以不同。 | [S1-02](02_Processor_Memory/Memory_and_Address_Spaces.md) |
-| 8 | Cache | Cache Memory | 缓存 | 减少访问较慢存储的开销；与 DMA 共享数据要考虑一致性。 | [模块入口](02_Processor_Memory/README.md) |
-| 9 | MMU | Memory Management Unit | 内存管理单元 | 提供地址转换和访问权限等机制，具体功能依架构。 | [模块入口](02_Processor_Memory/README.md) |
+| 8 | Cache | Cache Memory | 缓存 | 减少访问较慢存储的开销；设备写入后 CPU 仍可能命中旧副本，需按一致性契约交接。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
+| 9 | MMU | Memory Management Unit | 内存管理单元 | CPU 侧地址转换和访问控制机制，不自动解决设备 DMA 的缓存一致性。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
 | 10 | Register | Register | 寄存器 | 外设暴露的配置、状态或数据访问接口；读写可能有副作用，本课不同于 CPU 通用寄存器。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
 | 11 | MMIO | Memory-Mapped I/O | 内存映射 I/O | 把 CPU 地址空间的一部分用于设备访问；映射、宽度、接口和寄存器语义需匹配。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
-| 12 | DMA | Direct Memory Access | 直接内存访问 | 硬件搬运数据，减少 CPU 逐项搬运；仍需配置、同步及完成处理。 | [模块入口](02_Processor_Memory/README.md) |
+| 12 | DMA | Direct Memory Access | 直接内存访问 | 硬件搬运数据，减少 CPU 逐项搬运；仍需设备可用映射、同步及所有权管理。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
 | 13 | IRQ | Interrupt Request | 中断请求 | 通知处理器发生事件；实际触发、屏蔽和处理链依平台，不代表上层回调已执行。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
 | 14 | PMIC | Power Management Integrated Circuit | 电源管理芯片 | 管理电源相关功能的集成电路，不能仅凭名称推定功能范围。 | [模块入口](03_Power_Clock/README.md) |
 | 15 | PMU | Power Management Unit | 电源管理单元 | 电源管理功能单元，可能位于 SoC 等器件内部，边界依平台。 | [模块入口](03_Power_Clock/README.md) |
@@ -67,6 +67,12 @@
 | 57 | Execution Context | Execution Context | 执行/处理上下文 | 决定代码能否睡眠、阻塞及使用哪些接口；硬中断与线程上下文分别核对。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
 | 58 | Mask / Unmask | Interrupt Mask / Unmask | 中断屏蔽 / 解除屏蔽 | 控制指定层级的中断通知，不自动等于清状态或停止硬件任务。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
 | 59 | Edge / Level | Edge-triggered / Level-triggered | 边沿 / 电平触发 | 分别关注规定方向的变化或有效电平；锁存、重送与清源规则依平台。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
+| 60 | IOMMU | Input/Output Memory Management Unit | 输入输出内存管理单元 | 可为设备 DMA 提供地址转换与隔离；不自动提供缓存一致性。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
+| 61 | IOVA | I/O Virtual Address | I/O 虚拟地址 | 相关平台上设备侧地址转换的输入地址，不等于 CPU 虚拟指针。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
+| 62 | Cache Line | Cache Line | 缓存行 | 缓存管理粒度；大小依架构，维护范围与共享需符合 DMA 契约。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
+| 63 | Clean / Invalidate | Cache Clean / Cache Invalidate | 缓存清理写回 / 缓存失效 | 前者写回脏数据，后者使副本失效；不能盲目互换或当作完成判据。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
+| 64 | Coherency | Cache Coherency | 缓存一致性 | 在指定范围内维持访问者的数据视图一致；仍需完成、顺序和生命周期管理。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
+| 65 | Ownership | Buffer Ownership | Buffer 所有权 | 约定当前谁可访问、修改或复用区域；本课按设备写与 CPU 读交替交接。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
 
 ## 相关公开依据与边界
 
@@ -78,12 +84,13 @@
 - 寄存器位域、读写副作用与 MMIO 完成语义：见 [S1-04 正文及对应来源](02_Processor_Memory/Registers_and_MMIO.md)。
 - 控制器分工、片上互联、I2C 请求与返回契约：见 [S1-05 正文及对应来源](02_Processor_Memory/Controllers_and_Buses.md)。
 - 中断、轮询、处理上下文与等待通知：见 [S1-06 正文及对应来源](02_Processor_Memory/Interrupts_and_Polling.md)。
+- DMA、Cache、CPU/设备地址与所有权交接：见 [S1-07 正文及对应来源](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md)。
 - AON、电源域、电源引脚名称及复位语义要查目标平台/器件资料；本库尚未指定芯片，未核对任何具体电压或时序。
 - PMIC/PMU、AP/MCU 等是功能与集成边界相关概念，不凭缩写推定实际芯片拓扑。
 
 ## 下一批术语
 
-规划：ISP、CSI-2、D-PHY、PDM、I2S、Codec、HCI、DAA、CCC、ENTDAA、SETDASA、IBI、BootROM、IOMMU、Runtime PM。
+规划：ISP、CSI-2、D-PHY、PDM、I2S、Codec、HCI、DAA、CCC、ENTDAA、SETDASA、IBI、BootROM、Runtime PM。
 这些尚未作为正式速查条目建立；随课程或会议问题查证后补入。
 
 ## 速查回答约定

@@ -24,6 +24,7 @@ S01～S11 首次查阅于 2026-10-14，后续资料按条目记录日期。未�
 - 支持范围：CPU 虚拟地址、CPU 物理地址、DMA 地址及映射的区别。
 - 限制：不能推定具体平台 IOMMU、一致性或 DMA 能力；具体代码结合目标内核和硬件。
 - S1-03 于 2026-10-16 复核地址分类，仅引用概念，不将示例地址用于实际平台。
+- S1-07 于 2026-10-21 复核地址、coherent/streaming 与同步模型，结合 S31 引用 API 契约；不照抄页面示例作为目标驱动。
 
 ## S03 Linux I3C 协议概览
 
@@ -251,6 +252,22 @@ S01～S11 首次查阅于 2026-10-14，后续资料按条目记录日期。未�
 - 版本：Linux v6.8 文档。
 - 支持范围：先初始化、通知可先于等待、阻塞等待的上下文限制，以及超时/复用/对象生命周期问题。
 - 限制：completion 不自动关联硬件请求编号或确认数据有效；本课不提供适用于所有设备的初始化/启动/重置配方。
+
+## S31 Linux DMA API 与所有权交接
+
+- 类型：公开实现的官方文档；查阅日期：2026-10-21。
+- 来源：[Dynamic DMA mapping using the generic device](https://www.kernel.org/doc/html/v6.8/core-api/dma-api.html)。
+- 版本：Linux v6.8 文档；本课限于基本 DMA API，不使用其高级非一致分配接口。
+- 支持范围：设备 DMA 地址、coherent 分配与 streaming 映射、方向、缓存行约束和 CPU/设备交接。
+- 限制：不将缓存维护、映射或同步视为设备完成/停止；实际 Camera 框架的分配与同步归属按目标实现核对，不能重复处理。
+
+## S32 Arm 缓存一致性与维护概念
+
+- 类型：处理器 IP 厂商官方技术文章；查阅日期：2026-10-21。
+- 来源：[Exploring How Cache Coherency Accelerates Heterogeneous Compute](https://developer.arm.com/community/arm-community-blogs/b/architectures-and-processors-blog/posts/exploring-how-cache-coherency-accelerates-heterogeneous-compute)。
+- 版本：页面标注 2016-05-29；仅引用基础概念，不作为当前产品能力或选型依据。
+- 支持范围：脏数据、旧缓存副本、clean/invalidate 与硬件/软件一致性的区别。
+- 限制：不推广文章中的 GPU、共享虚拟内存或互联方案到本项目；不引用性能数字，也不据此制定实际平台的缓存维护指令序列。
 
 ## 后续需要的器件资料
 
