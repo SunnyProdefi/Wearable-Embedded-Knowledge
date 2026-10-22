@@ -2,7 +2,7 @@
 
 ## 使用说明
 
-首批 30 个术语，加上 S1-01～S1-07 的关联条目，共 65 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
+首批 30 个术语，加上已建立课程的关联条目，共 95 个，面向 Camera 底层软件工作；这是通用概念速查，不是器件参数表。
 关联链接指向已存在的模块导航或课程正文；正式讲解后更新相关入口。
 术语存在不代表用户已学习或掌握。
 
@@ -21,22 +21,22 @@
 | 11 | MMIO | Memory-Mapped I/O | 内存映射 I/O | 把 CPU 地址空间的一部分用于设备访问；映射、宽度、接口和寄存器语义需匹配。 | [S1-04](02_Processor_Memory/Registers_and_MMIO.md) |
 | 12 | DMA | Direct Memory Access | 直接内存访问 | 硬件搬运数据，减少 CPU 逐项搬运；仍需设备可用映射、同步及所有权管理。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
 | 13 | IRQ | Interrupt Request | 中断请求 | 通知处理器发生事件；实际触发、屏蔽和处理链依平台，不代表上层回调已执行。 | [S1-06](02_Processor_Memory/Interrupts_and_Polling.md) |
-| 14 | PMIC | Power Management Integrated Circuit | 电源管理芯片 | 管理电源相关功能的集成电路，不能仅凭名称推定功能范围。 | [模块入口](03_Power_Clock/README.md) |
-| 15 | PMU | Power Management Unit | 电源管理单元 | 电源管理功能单元，可能位于 SoC 等器件内部，边界依平台。 | [模块入口](03_Power_Clock/README.md) |
-| 16 | LDO | Low-Dropout Regulator | 低压差线性稳压器 | 线性稳压；软件需关注使能、负载、电压和可用条件。 | [模块入口](03_Power_Clock/README.md) |
-| 17 | BUCK | Buck Converter | 降压开关变换器 | 开关式降压电路；适用电压、负载和动态行为看器件资料。 | [模块入口](03_Power_Clock/README.md) |
-| 18 | Power Rail | Power Rail | 电源轨 | 一路供电网络；不与电源管理域简单等同。 | [模块入口](03_Power_Clock/README.md) |
-| 19 | Power Domain | Power Domain | 电源域 | 具有共同电源管理边界的电路集合；具体划分依平台。 | [模块入口](03_Power_Clock/README.md) |
-| 20 | AVDD | Analog Supply Voltage（常见命名） | 模拟电源 | 常见模拟部分供电名称，准确含义看器件引脚定义。 | [模块入口](03_Power_Clock/README.md) |
-| 21 | DVDD | Digital Supply Voltage（常见命名） | 数字电源 | 常见数字核心供电名称；具体定义依器件。 | [模块入口](03_Power_Clock/README.md) |
-| 22 | DOVDD / VDDIO | Digital I/O Supply / I/O Supply Voltage（常见命名） | 数字接口电源 | 常见 I/O 供电命名，不保证两个名称在所有芯片中可互换。 | [模块入口](03_Power_Clock/README.md) |
-| 23 | Reset | Reset | 复位 | 使指定硬件进入规定状态；范围、极性、时序及保留项需核对。 | [模块入口](03_Power_Clock/README.md) |
-| 24 | Crystal | Quartz Crystal | 晶体 | 通常与振荡电路配合形成时钟；不同于独立完整振荡器。 | [模块入口](03_Power_Clock/README.md) |
-| 25 | PLL | Phase-Locked Loop | 锁相环 | 用于时钟合成等功能；锁定与输入条件取决于具体实现。 | [模块入口](03_Power_Clock/README.md) |
-| 26 | MCLK | Master Clock（常见命名） | 主时钟 | Camera 中常指 Sensor 外部输入时钟，命名和来源依平台。 | [模块入口](03_Power_Clock/README.md) |
-| 27 | GPIO | General-Purpose Input/Output | 通用输入输出 | 控制或采样引脚状态；需核对复用、电平、方向及上下拉。 | [模块入口](04_Hardware_Interfaces/README.md) |
-| 28 | I2C | Inter-Integrated Circuit | 集成电路间串行总线 | 常见双线外设控制接口；总线地址与器件寄存器地址不同。 | [模块入口](04_Hardware_Interfaces/README.md) |
-| 29 | I3C | Improved Inter-Integrated Circuit | 改进型集成电路间串行总线 | 支持动态地址和带内中断等能力，实际支持需核对版本及器件。 | [模块入口](04_Hardware_Interfaces/README.md) |
+| 14 | PMIC | Power Management Integrated Circuit | 电源管理芯片 | 管理电源相关功能的集成电路，不能仅凭名称推定功能范围。 | [S2-02](03_Power_Clock/Power_Rails_and_Domains.md) |
+| 15 | PMU | Power Management Unit | 电源管理单元 | 电源管理功能单元，可能位于 SoC 等器件内部，边界依平台。 | [S2-02](03_Power_Clock/Power_Rails_and_Domains.md) |
+| 16 | LDO | Low-Dropout Regulator | 低压差线性稳压器 | 线性稳压；软件需关注使能、负载、电压和可用条件。 | [S2-01](03_Power_Clock/Electrical_Basics_and_Regulators.md) |
+| 17 | BUCK | Buck Converter | 降压开关变换器 | 开关式降压电路；适用电压、负载和动态行为看器件资料。 | [S2-01](03_Power_Clock/Electrical_Basics_and_Regulators.md) |
+| 18 | Power Rail | Power Rail | 电源轨 | 一路供电网络；不与电源管理域简单等同。 | [S2-02](03_Power_Clock/Power_Rails_and_Domains.md) |
+| 19 | Power Domain | Power Domain | 电源域 | 具有共同电源管理边界的电路集合；具体划分依平台。 | [S2-02](03_Power_Clock/Power_Rails_and_Domains.md) |
+| 20 | AVDD | Analog Supply Voltage（常见命名） | 模拟电源 | 常见模拟部分供电名称，准确含义看器件引脚定义。 | [S2-02](03_Power_Clock/Power_Rails_and_Domains.md) |
+| 21 | DVDD | Digital Supply Voltage（常见命名） | 数字电源 | 常见数字核心供电名称；具体定义依器件。 | [S2-02](03_Power_Clock/Power_Rails_and_Domains.md) |
+| 22 | DOVDD / VDDIO | Digital I/O Supply / I/O Supply Voltage（常见命名） | 数字接口电源 | 常见 I/O 供电命名，不保证两个名称在所有芯片中可互换。 | [S2-02](03_Power_Clock/Power_Rails_and_Domains.md) |
+| 23 | Reset | Reset | 复位 | 使指定硬件进入规定状态；范围、极性、时序及保留项需核对。 | [S2-03](03_Power_Clock/Power_Reset_Sequences.md) |
+| 24 | Crystal | Quartz Crystal | 晶体 | 通常与振荡电路配合形成时钟；不同于独立完整振荡器。 | [S2-04](03_Power_Clock/Clock_Tree_and_Gating.md) |
+| 25 | PLL | Phase-Locked Loop | 锁相环 | 用于时钟合成等功能；锁定与输入条件取决于具体实现。 | [S2-04](03_Power_Clock/Clock_Tree_and_Gating.md) |
+| 26 | MCLK | Master Clock（常见命名） | 主时钟 | Camera 中常指 Sensor 外部输入时钟，命名和来源依平台。 | [S2-04](03_Power_Clock/Clock_Tree_and_Gating.md) |
+| 27 | GPIO | General-Purpose Input/Output | 通用输入输出 | 控制或采样引脚状态；需核对复用、电平、方向及上下拉。 | [S2-05](04_Hardware_Interfaces/GPIO_PWM_ADC_DAC.md) |
+| 28 | I2C | Inter-Integrated Circuit | 集成电路间串行总线 | 常见双线外设控制接口；总线地址与器件寄存器地址不同。 | [S2-06](04_Hardware_Interfaces/I2C.md) |
+| 29 | I3C | Improved Inter-Integrated Circuit | 改进型集成电路间串行总线 | 支持动态地址和带内中断等能力，实际支持需核对版本及器件。 | [S2-07](04_Hardware_Interfaces/I3C.md) |
 | 30 | AON | Always-On | 常开资源或域 | 在指定低功耗状态保留的资源，不能据此推定支持图像采集。 | [模块入口](01_System_Architecture/README.md) |
 | 31 | DSP | Digital Signal Processor | 数字信号处理器 | 为滤波等信号计算优化的可编程处理器；职责与工具链依平台。 | [S1-01](02_Processor_Memory/Processor_Roles.md) |
 | 32 | NPU | Neural Processing Unit | 神经网络处理单元 | 加速支持的神经网络任务；需要模型适配、运行时和资源管理。 | [S1-01](02_Processor_Memory/Processor_Roles.md) |
@@ -74,6 +74,37 @@
 | 64 | Coherency | Cache Coherency | 缓存一致性 | 在指定范围内维持访问者的数据视图一致；仍需完成、顺序和生命周期管理。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
 | 65 | Ownership | Buffer Ownership | Buffer 所有权 | 约定当前谁可访问、修改或复用区域；本课按设备写与 CPU 读交替交接。 | [S1-07](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md) |
 
+| 66 | BootROM | Boot ROM | 启动 ROM | 复位后执行的早期启动代码/区域之一，实际实现与入口查芯片。 | [S1-08](02_Processor_Memory/Boot_and_Heterogeneous_Execution.md) |
+| 67 | Bootloader | Bootloader | 引导加载程序 | 执行必要初始化、装载与控制转交；阶段和职责依平台。 | [S1-08](02_Processor_Memory/Boot_and_Heterogeneous_Execution.md) |
+| 68 | Firmware | Firmware | 固件 | 在设备/处理器上执行的软件，可含裸机或 RTOS，不等于镜像已加载就服务就绪。 | [S1-08](02_Processor_Memory/Boot_and_Heterogeneous_Execution.md) |
+| 69 | RTOS | Real-Time Operating System | 实时操作系统 | 支持具有实时需求的任务组织，实际时限仍需系统设计保证。 | [S1-08](02_Processor_Memory/Boot_and_Heterogeneous_Execution.md) |
+| 70 | Clock Tree | Clock Tree | 时钟树 | 时钟源、选择、分频、门控与消费者的依赖关系。 | [S2-04](03_Power_Clock/Clock_Tree_and_Gating.md) |
+| 71 | Oscillator | Oscillator | 振荡器 | 产生周期信号的电路/器件，不与普通无源晶体直接等同。 | [S2-04](03_Power_Clock/Clock_Tree_and_Gating.md) |
+| 72 | Clock Gating | Clock Gating | 时钟门控 | 控制指定时钟活动，不自动切断供电或保证状态丢失。 | [S2-04](03_Power_Clock/Clock_Tree_and_Gating.md) |
+| 73 | Power Gating | Power Gating | 电源门控 | 控制指定电路的供电，涉及隔离、保留和恢复等平台约束。 | [S2-02](03_Power_Clock/Power_Rails_and_Domains.md) |
+| 74 | PWM | Pulse Width Modulation | 脉宽调制 | 以周期、占空比和极性描述脉冲输出，不等于任意精密模拟电压。 | [S2-05](04_Hardware_Interfaces/GPIO_PWM_ADC_DAC.md) |
+| 75 | ADC | Analog-to-Digital Converter | 模数转换器 | 对模拟量采样与量化；位数不直接等于系统准确度。 | [S2-05](04_Hardware_Interfaces/GPIO_PWM_ADC_DAC.md) |
+| 76 | DAC | Digital-to-Analog Converter | 数模转换器 | 按数字码产生模拟输出，负载驱动能力和精度需另外核对。 | [S2-05](04_Hardware_Interfaces/GPIO_PWM_ADC_DAC.md) |
+| 77 | Pin Mux | Pin Multiplexing | 引脚复用 | 选择引脚功能路径，GPIO 数据位不覆盖任意已选择的外设功能。 | [S2-05](04_Hardware_Interfaces/GPIO_PWM_ADC_DAC.md) |
+| 78 | Open-drain | Open-drain Output | 开漏输出 | 主动拉低、另一状态释放；实际高电平依上拉与外部条件。 | [S2-05](04_Hardware_Interfaces/GPIO_PWM_ADC_DAC.md) |
+| 79 | DAA | Dynamic Address Assignment | 动态地址分配 | 按支持方法建立 I3C 目标身份与动态地址关系，不等于只走 ENTDAA。 | [S2-07](04_Hardware_Interfaces/I3C.md) |
+| 80 | CCC | Common Command Code | 公共命令码 | I3C 总线管理命令层次，不直接等同于厂商寄存器或 HostCmd。 | [S2-07](04_Hardware_Interfaces/I3C.md) |
+| 81 | ENTDAA / SETDASA | Enter DAA / Set Dynamic Address from Static Address | 两类动态地址分配方法 | 前者参与发现/仲裁分配，后者利用已知静态地址，均需核对版本与目标状态/能力。 | [S2-07](04_Hardware_Interfaces/I3C.md) |
+| 82 | IBI | In-Band Interrupt | 带内中断 | I3C 目标通过总线通知事件，接收/仲裁/使能和事件语义依契约。 | [S2-07](04_Hardware_Interfaces/I3C.md) |
+| 83 | SPI | Serial Peripheral Interface | 串行外设接口 | 以时钟、片选和数据路径组织传输，上层消息格式仍由器件定义。 | [S2-08](04_Hardware_Interfaces/SPI_UART.md) |
+| 84 | UART | Universal Asynchronous Receiver/Transmitter | 通用异步收发器 | 按约定波特率/帧格式收发串行数据，不等于任意上层命令完成。 | [S2-08](04_Hardware_Interfaces/SPI_UART.md) |
+| 85 | CSI-2 / DSI | Camera Serial Interface 2 / Display Serial Interface | 相机 / 显示串行接口 | 分别用于对应系统位置，协议与物理层需要区分，不能简单互换。 | [S2-08](04_Hardware_Interfaces/SPI_UART.md) |
+| 86 | D-PHY / C-PHY | MIPI D-PHY / MIPI C-PHY | MIPI 物理层名称 | 与 CSI-2 等协议层次区分，实际组合与参数按目标版本和芯片核对。 | [S2-08](04_Hardware_Interfaces/SPI_UART.md) |
+| 87 | USB | Universal Serial Bus | 通用串行总线 | Host/设备角色、枚举与传输等层次需分别确认。 | [S2-08](04_Hardware_Interfaces/SPI_UART.md) |
+| 88 | SDIO | Secure Digital Input/Output | SD 输入输出接口 | 连接 I/O 功能的接口，不只表示存储卡，也不等于 Wi-Fi 协议。 | [S2-08](04_Hardware_Interfaces/SPI_UART.md) |
+| 89 | PCIe | Peripheral Component Interconnect Express | 高速外围组件互联 | 链路、枚举/资源、DMA 与具体设备服务需分层分析。 | [S2-08](04_Hardware_Interfaces/SPI_UART.md) |
+| 90 | Ripple / Transient Response | Ripple / Transient Response | 纹波 / 瞬态响应 | 分别关注周期变化及负载等突变后的动态表现，不以静态电压替代。 | [S2-01](03_Power_Clock/Electrical_Basics_and_Regulators.md) |
+| 91 | Iq | Quiescent Current | 静态电流 | 稳压器自身工作消耗的一类指标，不能直接等同整机待机电流。 | [S2-01](03_Power_Clock/Electrical_Basics_and_Regulators.md) |
+| 92 | Dropout | Dropout Voltage | 稳压压差余量 | 维持 LDO 稳压所需余量依负载等条件，不能把配置值当实际输出。 | [S2-01](03_Power_Clock/Electrical_Basics_and_Regulators.md) |
+| 93 | CPOL / CPHA | Clock Polarity / Clock Phase | 时钟极性 / 相位 | 决定 SPI 空闲电平和采样/移位关系，按两端时序图匹配。 | [S2-08](04_Hardware_Interfaces/SPI_UART.md) |
+| 94 | PID / BCR / DCR | Provisional ID / Bus Characteristic Register / Device Characteristic Register | I3C 身份与能力字段 | 用于协议发现/描述，不与厂商 Chip ID 或 CPU 地址混为一谈。 | [S2-07](04_Hardware_Interfaces/I3C.md) |
+| 95 | Retention | State Retention | 状态保留 | 在规定供电和低功耗条件下保留指定状态，不表示全掉电后全部内容仍在。 | [S2-02](03_Power_Clock/Power_Rails_and_Domains.md) |
+
 ## 相关公开依据与边界
 
 - DMA 地址、CPU 地址及映射：见 [S02：Linux DMA 指南](Sources.md#s02-linux-dma-地址与映射)。
@@ -85,12 +116,13 @@
 - 控制器分工、片上互联、I2C 请求与返回契约：见 [S1-05 正文及对应来源](02_Processor_Memory/Controllers_and_Buses.md)。
 - 中断、轮询、处理上下文与等待通知：见 [S1-06 正文及对应来源](02_Processor_Memory/Interrupts_and_Polling.md)。
 - DMA、Cache、CPU/设备地址与所有权交接：见 [S1-07 正文及对应来源](02_Processor_Memory/Cache_MMU_and_DMA_Mapping.md)。
+- 本轮启动、电源、时钟与接口资料见 [学习包](Study_Pack_S1-08_S2.md) 及各课来源；
 - AON、电源域、电源引脚名称及复位语义要查目标平台/器件资料；本库尚未指定芯片，未核对任何具体电压或时序。
 - PMIC/PMU、AP/MCU 等是功能与集成边界相关概念，不凭缩写推定实际芯片拓扑。
 
 ## 下一批术语
 
-规划：ISP、CSI-2、D-PHY、PDM、I2S、Codec、HCI、DAA、CCC、ENTDAA、SETDASA、IBI、BootROM、Runtime PM。
+规划：ISP、PDM、I2S、Codec、HCI、Runtime PM；接口位置概览已建立，子系统和 API 细节随对应课程深入。
 这些尚未作为正式速查条目建立；随课程或会议问题查证后补入。
 
 ## 速查回答约定

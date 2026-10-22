@@ -269,6 +269,90 @@ S01～S11 首次查阅于 2026-10-14，后续资料按条目记录日期。未�
 - 支持范围：脏数据、旧缓存副本、clean/invalidate 与硬件/软件一致性的区别。
 - 限制：不推广文章中的 GPU、共享虚拟内存或互联方案到本项目；不引用性能数字，也不据此制定实际平台的缓存维护指令序列。
 
+## S33 Linux 远端处理器启动
+
+- 类型：官方源码树中的公开实现文档；查阅：2026-10-22。
+- 来源：[remoteproc.rst](https://raw.githubusercontent.com/torvalds/linux/v6.8/Documentation/staging/remoteproc.rst)，固定 Linux v6.8。
+- 支持：远端处理器装载/启停的抽象与平台实现边界。
+- 限制：不代表所有 BootROM/MCU 流程；装载或启动 API 成功不能被扩大解释为任意服务就绪。
+
+## S34 TI 稳压器基本原理
+
+- 类型：芯片厂商应用报告；查阅：2026-10-22。
+- 来源：[SLVA079，LDO Terms and Definitions](https://www.ti.com/lit/an/slva079/slva079.pdf)，1999-10；[SLVA057，Understanding Buck Power Stages](https://www.ti.com/lit/an/slva057/slva057.pdf)，1999-03。
+- 支持：LDO 压差、Iq、效率/损耗与动态响应，BUCK 开关降压的基础模型。
+- 限制：仅用基础原理，不沿用历史器件参数或设计推荐；教学计算忽略 Iq 并明确稳压条件，实际选型另查目标手册。
+
+## S35 Linux regulator 消费者接口
+
+- 类型：公开实现官方文档；查阅：2026-10-22。
+- 来源：[Regulator Consumer Driver Interface](https://www.kernel.org/doc/html/v6.8/power/regulator/consumer.html)，Linux v6.8。
+- 支持：消费者资源关联、共享启用引用及配置/状态的区分。
+- 限制：软件 enable/get_voltage 不替代负载端测量，不从框架引用推定真实板级电源域拓扑。
+
+## S36 Linux Sensor 资源与复位
+
+- 类型：公开实现官方文档；查阅：2026-10-22。
+- 来源：[Camera Sensor drivers](https://www.kernel.org/doc/html/v6.8/driver-api/media/camera-sensor.html)、[Reset controller API](https://www.kernel.org/doc/html/v6.8/driver-api/reset.html)，Linux v6.8。
+- 支持：Sensor 电源/时钟/运行时 PM 的软件协同，以及复位接口的独占/共享边界。
+- 限制：不提供目标 Sensor 电源先后、复位极性、等待数值；通用 reset controller 也不必直接对应外部 GPIO。
+
+## S37 Linux 公共时钟框架
+
+- 类型：公开实现官方文档；查阅：2026-10-22。
+- 来源：[The Common Clk Framework](https://www.kernel.org/doc/html/v6.8/driver-api/clk.html)，Linux v6.8。
+- 支持：时钟树父子关系、mux/rate/gate 和公共/硬件实现分层。
+- 限制：不推定真实 PLL/引脚频率、锁定或抖动能力，不将软件 rate 当作物理测量。
+
+## S38 Linux GPIO PWM 与 IIO
+
+- 类型：公开实现官方文档；查阅：2026-10-22。
+- 来源：[GPIO consumer](https://www.kernel.org/doc/html/v6.8/driver-api/gpio/consumer.html)、[PWM](https://www.kernel.org/doc/html/v6.8/driver-api/pwm.html)、[IIO intro 原文](https://raw.githubusercontent.com/torvalds/linux/v6.8/Documentation/driver-api/iio/intro.rst)，Linux v6.8。
+- 支持：GPIO 逻辑/物理值、开漏及可睡眠访问，PWM 状态与 IIO 的设备范围。
+- 限制：不定义目标 I/O 电平、实际波形精度或所有 ADC/DAC 的换算公式。
+
+## S39 NXP I2C 规范
+
+- 类型：协议制定方公开规范；查阅：2026-10-22。
+- 来源：[UM10204](https://www.nxp.com/docs/en/user-guide/UM10204.pdf)，Rev.7.0，2021-10-01。
+- 支持：普通双向 I2C 的基础电气、起止/重复起始、字节与 ACK/NACK、伸展/仲裁概念。
+- 限制：本课选取基础范围，不声称完成全部模式条款核对；不得将普通开漏模型或假设 Sensor 寄存器事务套到所有特殊模式和器件。
+
+## S40 MIPI I3C 公开 FAQ v1.1.1
+
+- 类型：标准组织的公开说明材料，非规范正文；查阅：2026-10-22。
+- 来源：[I3C/I3C Basic v1.1.1 FAQ v1.1 Public Edition](https://www.mipi.org/hubfs/FAQs/mipi-I3C-v1-1-1-and-I3C-Basic-v1-1-1-FAQ-v1.1-Public.pdf)，2022-08-22。
+- 支持：ENTDAA/SETDASA 的能力与状态条件、IBI、Bus Free/Available/Idle 的区别；重点核对地址分配和总线状态章节。
+- 限制：未取得完整规范，不能据 FAQ 跨版本推定强制能力、电气/时序数值或厂商完成协议。
+
+## S41 Linux v6.8 I3C 软件概览
+
+- 类型：公开实现官方文档；查阅：2026-10-22。
+- 来源：[I3C protocol](https://www.kernel.org/doc/html/v6.8/driver-api/i3c/protocol.html)，固定 Linux v6.8，与 S03 的未固定版本入口区分。
+- 支持：动态地址、身份/能力和事件的软件视角。
+- 限制：历史 master/slave 术语按 Controller/Target 对应；不将概览中的历史描述替代版本化 MIPI 规则或控制器能力。
+
+## S42 Linux SPI 与 UART
+
+- 类型：公开实现官方文档；查阅：2026-10-22。
+- 来源：[SPI overview](https://www.kernel.org/doc/html/v6.8/spi/spi-summary.html)、[Low Level Serial API](https://www.kernel.org/doc/html/v6.8/driver-api/serial/driver.html)，Linux v6.8。
+- 支持：SPI 时钟/片选/模式和上层私有协议边界，UART 底层驱动分工。
+- 限制：不沿用示例速度或引脚数量作为所有变体约束；UART 传输不等于 HCI 或厂商消息协议完成。
+
+## S43 ADI 转换器理想量化模型
+
+- 类型：芯片厂商技术教程；查阅：2026-10-22。
+- 来源：[MT-001](https://www.analog.com/media/en/training-seminars/tutorials/MT-001.pdf)，Rev.A，2008-10。
+- 支持：理想 N 位量化及其模型条件，位数与实际系统性能的边界。
+- 限制：不将理想模型当成目标 ADC 准确度；不提供通用 raw code 到电压的公式，也不引用不满足条件的 SNR 推论。
+
+## S44 高速接口的官方定位
+
+- 类型：标准组织介绍与公开实现文档；查阅：2026-10-22。
+- 来源：[MIPI DSI](https://www.mipi.org/specifications/dsi)、[SD Association SDIO](https://www.sdcard.org/developers/sd-standard-overview/sdio-isdio/) 为在线介绍；[Linux USB](https://www.kernel.org/doc/html/v6.8/driver-api/usb/usb.html)、[Linux PCI](https://www.kernel.org/doc/html/v6.8/PCI/pci.html) 为 v6.8。
+- 支持：显示、Host/设备、I/O 功能与枚举/资源等系统位置；Camera CSI-2 继续引用 S04。
+- 限制：未核对完整 DSI/SDIO/USB/PCIe 规范，不引用最新版本/性能或具体 PHY 要求，不推定真实眼镜/TWS 拓扑。
+
 ## 后续需要的器件资料
 
 当前无具体芯片，以下都待用户任务提供或公开查证：

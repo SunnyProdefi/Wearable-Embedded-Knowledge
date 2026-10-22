@@ -7,7 +7,7 @@
 - 深度：深入，第一阶段主模块。
 - 前置：C/C++ 基础；具体课程依赖见 Roadmap。
 - 课程位置：S1-01～S1-08；S4-03、S4-04。
-- 状态：S1-01～S1-07 已建立；其余详细内容仍为规划。
+- 状态：S1-01～S1-08 已建立；后续阶段内容仍按课程推进。
 - 学习掌握情况以 [Progress.md](../Progress.md) 为准。
 
 ## 主题与拟建文档
@@ -21,7 +21,7 @@
 | [Controllers_and_Buses.md](Controllers_and_Buses.md) | S1-05：CPU/控制器分工、片上互联与外部总线、Chip ID 请求链与分层证据 | S1-05 正文已建立 |
 | [Interrupts_and_Polling.md](Interrupts_and_Polling.md) | S1-06：轮询/中断、状态到回调、处理上下文、屏蔽/确认与超时 | S1-06 正文已建立；DMA 细节见后续课程 |
 | [Cache_MMU_and_DMA_Mapping.md](Cache_MMU_and_DMA_Mapping.md) | S1-07：DMA 写入职责、CPU/DMA 地址、Cache、一致性、映射与 Buffer 交接 | S1-07 正文已建立 |
-| `Boot_and_Heterogeneous_Execution.md` | BootROM/Bootloader/Firmware、运行前提与多核协同 | 待创建 |
+| [Boot_and_Heterogeneous_Execution.md](Boot_and_Heterogeneous_Execution.md) | S1-08：BootROM/Bootloader/Firmware、代码/数据运行前提与多核就绪边界 | S1-08 正文已建立 |
 
 文件名是规划，不是不存在正文的链接。正式编写后更新本导航。
 

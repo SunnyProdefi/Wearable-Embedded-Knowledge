@@ -7,20 +7,20 @@
 - 深度：I2C/I3C 与 Camera 接口深入；其他接口按工程需求扩展。
 - 前置：S1-04～S1-06；电平、时钟与复位条件。
 - 课程位置：关联基础课 S1-05；S2-05～S2-08；S3-03、S3-06。
-- 状态：基础请求链见 [S1-05 控制器与总线](../02_Processor_Memory/Controllers_and_Buses.md)；下列详细协议文档尚未创建。
+- 状态：S2-05～S2-08 正文已建立，列入 [本轮连贯阅读](../Study_Pack_S1-08_S2.md)；其他子系统接口仍按阶段深化。
 - 学习掌握情况以 [Progress.md](../Progress.md) 为准。
 
 ## 主题与拟建文档
 
 | 拟建文件 | 内容范围 | 建设状态 |
 |---|---|---|
-| `GPIO_PWM_ADC_DAC.md` | 方向/复用/上下拉、电平、PWM 和模拟数字转换 | 待创建 |
-| `I2C.md` | Controller/Target、旧 Master/Slave 术语、ACK/NACK 与波形 | 待创建 |
-| `I3C.md` | DAA、ENTDAA/SETDASA、CCC、IBI、Bus Busy 与实现边界 | 待创建 |
-| `SPI_UART.md` | 串行传输、配置和控制器行为 | 待创建 |
-| `MIPI_CSI2_DSI.md` | 相机与显示接口位置、协议与物理层的区别 | 待创建 |
+| [GPIO_PWM_ADC_DAC.md](GPIO_PWM_ADC_DAC.md) | S2-05：方向/复用/上下拉、电平、PWM 和模拟数字转换 | 正文已建立 |
+| [I2C.md](I2C.md) | S2-06：Controller/Target、ACK/NACK、事务与错误分层 | 正文已建立 |
+| [I3C.md](I3C.md) | S2-07：DAA、ENTDAA/SETDASA、CCC、IBI、Bus Busy 与版本边界 | 正文已建立 |
+| [SPI_UART.md](SPI_UART.md) | S2-08：SPI/UART 机制及 CSI-2/DSI、USB/SDIO/PCIe 位置 | 正文已建立 |
+| `MIPI_CSI2_DSI.md` | 协议与物理层深入；接口位置已在 S2-08 概览 | 深入正文待创建 |
 | `I2S_PCM_PDM_TDM.md` | 音频数据、时钟、通道与帧结构 | 待创建 |
-| `USB_SDIO_PCIe.md` | Host 接口、枚举/传输概览及无线芯片连接 | 待创建 |
+| `USB_SDIO_PCIe.md` | Host 接口深入；位置已在 S2-08 概览 | 深入正文待创建 |
 
 文件名是规划，不是不存在正文的链接。正式编写后更新本导航。
 

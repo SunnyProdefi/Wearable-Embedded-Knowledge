@@ -185,5 +185,5 @@ CPU 尚未用完时，应让设备使用另一块已经可用的 Buffer，或按
 ## 关联课程与来源
 
 - [前一课 S1-06](Interrupts_and_Polling.md)、[地址空间 S1-03](Address_Spaces_and_Mapping.md)、[Camera 模块](../05_Camera/README.md)、[课程路线](../Roadmap.md)。
-- 下一课 S1-08：Boot、Firmware 与异构执行概览，整合代码执行与资源可用前提。
+- [下一课 S1-08](Boot_and_Heterogeneous_Execution.md)：Boot、Firmware 与异构执行概览，整合代码执行与资源可用前提。
 - S02 为已登记的 Linux v6.8 DMA 指南，本课复核其地址与映射模型；新增 S31 DMA API、S32 Arm 缓存概念说明。版本和适用边界见 [Sources.md](../Sources.md)。

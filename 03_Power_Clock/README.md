@@ -7,17 +7,17 @@
 - 深度：深入，直接服务 Sensor 启停和整机低功耗。
 - 前置：S1-04；电压/电流知识在本模块补齐。
 - 课程位置：S2-01～S2-04；S4-07；S5-05。
-- 状态：仅导航与主题规划；下列详细文档尚未创建。
+- 状态：S2-01～S2-04 正文已建立，列入 [本轮连贯阅读](../Study_Pack_S1-08_S2.md)；休眠保留详细内容仍为规划。
 - 学习掌握情况以 [Progress.md](../Progress.md) 为准。
 
 ## 主题与拟建文档
 
 | 拟建文件 | 内容范围 | 建设状态 |
 |---|---|---|
-| `Electrical_Basics_and_Regulators.md` | 电压/电流/功率/能量/纹波/压降，LDO/BUCK/DC-DC | 待创建 |
-| `Power_Rails_and_Domains.md` | PMIC/PMU、电源轨与域、AVDD/DVDD/DOVDD/VDDIO | 待创建 |
-| `Power_Reset_Sequences.md` | 上电、掉电、复位及可访问条件 | 待创建 |
-| `Clock_Tree_and_Gating.md` | Crystal/Oscillator/PLL、MCLK/PCLK、Clock/Power Gating | 待创建 |
+| [Electrical_Basics_and_Regulators.md](Electrical_Basics_and_Regulators.md) | S2-01：电压/电流/功率/能量/纹波/压降，LDO/BUCK/DC-DC | 正文已建立 |
+| [Power_Rails_and_Domains.md](Power_Rails_and_Domains.md) | S2-02：PMIC/PMU、电源轨与域、AVDD/DVDD/DOVDD/VDDIO | 正文已建立 |
+| [Power_Reset_Sequences.md](Power_Reset_Sequences.md) | S2-03：上电、掉电、复位及可访问条件 | 正文已建立 |
+| [Clock_Tree_and_Gating.md](Clock_Tree_and_Gating.md) | S2-04：Crystal/Oscillator/PLL、MCLK/PCLK、Clock/Power Gating | 正文已建立 |
 | `Sleep_Wakeup_and_Retention.md` | Sleep/Standby/Deep Sleep 的平台语义、AON、保留与恢复 | 待创建 |
 
 文件名是规划，不是不存在正文的链接。正式编写后更新本导航。
